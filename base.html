@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Financial Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-container">
+        <nav class="sidebar">
+    <h2>FinDash AI</h2>
+    <ul>
+        <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('transactions') }}">Transactions</a></li>
+        <li><a href="{{ url_for('portfolio') }}">Portfolio</a></li>
+        <li><a href="{{ url_for('epf_credit') }}">EPF & Credit</a></li>
+        <li><a href="{{ url_for('assets_liabilities') }}">Assets & Liabilities</a></li>
+    </ul>
+    <div class="sidebar-footer">
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</nav>
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

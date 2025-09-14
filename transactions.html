@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Transactions</h1>
+    <p>This page shows a detailed list of your transactions.</p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for trx in transactions %}
+            <tr>
+                <td>{{ trx.date }}</td>
+                <td>{{ trx.category }}</td>
+                <td class="{{ 'income' if trx.type == 'income' else 'expense' }}">
+                    ₹{{ "{:,.2f}".format(trx.amount) }}
+                </td>
+                <td>{{ trx.type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

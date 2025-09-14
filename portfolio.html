@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Investment Portfolio</h1>
+    <p>A summary of your current investments.</p>
+    <div class="card">
+        <h3>Total Investment Value</h3>
+        <p class="large-text">₹{{ "{:,.2f}".format(investments) }}</p>
+        <p>This includes stocks, mutual funds, and other investment vehicles.</p>
+    </div>
+{% endblock %}

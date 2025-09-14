@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>EPF & Credit Score</h1>
+    <p>Your retirement savings and credit health overview.</p>
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3>EPF Balance</h3>
+            <p class="large-text">₹{{ "{:,.2f}".format(epf_balance) }}</p>
+        </div>
+        <div class="card">
+            <h3>Credit Score</h3>
+            <p class="large-text">{{ credit_score.score }}</p>
+            <span>{{ credit_score.rating }}</span>
+        </div>
+    </div>
+{% endblock %}

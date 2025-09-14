@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Assets & Liabilities</h1>
+    <p>A detailed breakdown of your net worth.</p>
+
+    <div class="dashboard-grid">
+        <div class="card">
+            <h3>Assets</h3>
+            <ul class="data-list">
+                {% for asset, value in assets.items() %}
+                <li>
+                    <span>{{ asset.replace('_', ' ')|title }}</span>
+                    <strong>₹{{ "{:,.2f}".format(value) }}</strong>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Liabilities</h3>
+            <ul class="data-list">
+                {% for liability, value in liabilities.items() %}
+                <li>
+                    <span>{{ liability.replace('_', ' ')|title }}</span>
+                    <strong>₹{{ "{:,.2f}".format(value) }}</strong>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{
+  "assets": {
+    "cash": 5000,
+    "bank_balance": 150000,
+    "investments": 75000
+  },
+  "liabilities": {
+    "credit_card_debt": 25000,
+    "student_loan": 200000
+  },
+  "epf_balance": 300000,
+  "credit_score": {
+    "score": 780,
+    "rating": "Excellent"
+  },
+  "transactions": [
+    {"date": "2025-08-01", "category": "Salary", "amount": 60000, "type": "income"},
+    {"date": "2025-08-05", "category": "Groceries", "amount": -4500, "type": "expense"},
+    {"date": "2025-08-10", "category": "Rent", "amount": -20000, "type": "expense"},
+    {"date": "2025-08-15", "category": "Dining Out", "amount": -3000, "type": "expense"},
+    {"date": "2025-08-20", "category": "Utilities", "amount": -2500, "type": "expense"},
+    {"date": "2025-07-01", "category": "Salary", "amount": 60000, "type": "income"},
+    {"date": "2025-07-06", "category": "Groceries", "amount": -5000, "type": "expense"},
+    {"date": "2025-07-10", "category": "Rent", "amount": -20000, "type": "expense"}
+  ]
+}

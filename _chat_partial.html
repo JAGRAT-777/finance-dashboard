@@ -1,0 +1,49 @@
+<div class="chat-container-partial">
+    <div id="chatbox">
+        <p class="assistant"><b>Assistant:</b> Hello! Ask me anything about your finances.</p>
+    </div>
+    <div id="suggestion-chips"></div>
+    <form id="chatform">
+        <input type="text" id="userInput" placeholder="Ask a question..." autocomplete="off">
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<script>
+    const chatForm = document.getElementById('chatform');
+    const userInput = document.getElementById('userInput');
+    const chatbox = document.getElementById('chatbox');
+    const suggestionChipsContainer = document.getElementById('suggestion-chips');
+    async function sendMessage(message) {
+        if (!message) return;
+        chatbox.innerHTML += `<p class="user"><b>You:</b> ${message}</p>`;
+        userInput.value = '';
+        suggestionChipsContainer.innerHTML = '';
+        const permissions = Array.from(document.querySelectorAll('#permissionsForm input:checked')).map(el => el.value);
+        chatbox.innerHTML += `<p class="assistant" id="thinking"><b>Assistant:</b> Thinking...</p>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+        const response = await fetch('/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message, permissions: permissions })
+        });
+        const data = await response.json();
+        document.getElementById('thinking').remove();
+        chatbox.innerHTML += `<p class="assistant"><b>Assistant:</b> ${data.reply}</p>`;
+        if (data.suggestions && data.suggestions.length > 0) {
+            data.suggestions.forEach(suggestion => {
+                const button = document.createElement('button');
+                button.innerText = suggestion;
+                button.onclick = () => {
+                    sendMessage(suggestion);
+                };
+                suggestionChipsContainer.appendChild(button);
+            });
+        }
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    chatForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        sendMessage(userInput.value);
+    });
+</script>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1>Your Financial Overview</h1>
+</div>
+<div class="dashboard-grid">
+    <div class="card asset-card">
+        <h3>Total Assets</h3>
+        <p class="large-text">₹{{ "{:,.2f}".format(total_assets) }}</p>
+    </div>
+    <div class="card liability-card">
+        <h3>Total Liabilities</h3>
+        <p class="large-text">₹{{ "{:,.2f}".format(liabilities.credit_card_debt + liabilities.student_loan) }}</p>
+    </div>
+    <div class="card credit-score-card">
+        <h3>Credit Score</h3>
+        <p class="large-text">{{ credit_score.score }}</p>
+        <span>{{ credit_score.rating }}</span>
+    </div>
+    <div class="card permissions-card">
+        <h3>Data Permissions</h3>
+        <form id="permissionsForm">
+            <input type="checkbox" id="assets" name="data_categories" value="assets" checked> <label for="assets">Assets</label><br>
+            <input type="checkbox" id="liabilities" name="data_categories" value="liabilities" checked> <label for="liabilities">Liabilities</label><br>
+            <input type="checkbox" id="transactions" name="data_categories" value="transactions" checked> <label for="transactions">Transactions</label><br>
+            <input type="checkbox" id="epf_balance" name="data_categories" value="epf_balance" checked> <label for="epf_balance">EPF Balance</label><br>
+            <input type="checkbox" id="credit_score" name="data_categories" value="credit_score" checked> <label for="credit_score">Credit Score</label><br>
+        </form>
+    </div>
+    <div class="card full-width-card">
+        <h3>AI Financial Assistant</h3>
+        {% include '_chat_partial.html' %}
+    </div>
+</div>
+{% endblock %}
